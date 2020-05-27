@@ -1,5 +1,6 @@
 package Basic;
 
+import java.util.Properties;
 import java.util.StringJoiner;
 
 public class CoreClasses {
@@ -48,6 +49,28 @@ public class CoreClasses {
         String select = buildSelectSql(table, fields);
         System.out.println(select);
         System.out.println("SELECT name, position, salary FROM employee".equals(select) ? "测试成功" : "测试失败");
+
+        System.out.println(Weekday.MON.name());
+//        System.out.println(Weekday.MON.ordinal());    // 无意义
+
+        Weekday day = Weekday.FRI;
+        switch (day) {
+            case MON:
+            case TUE:
+            case THU:
+            case WED:
+            case FRI:
+                System.out.println("work day.");
+                break;
+            case SAT:
+            case SUN:
+                System.out.println("week end");
+                break;
+            default:
+                throw new RuntimeException("can not process " + day);
+        }
+
+
     }
 
     static String buildInsertSql(String table, String[] fields) {
@@ -89,5 +112,15 @@ class Adder {
 
     public int value() {
         return sum;
+    }
+}
+
+enum Weekday {
+    SUN(0), MON(1), TUE(2), WED(3), THU(4), FRI(5), SAT(6);
+
+    public final int datValue;
+
+    private Weekday(int dayValue) {
+        this.datValue = dayValue;
     }
 }
