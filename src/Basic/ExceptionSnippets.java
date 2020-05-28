@@ -7,7 +7,6 @@ public class ExceptionSnippets {
 //        Logger logger=Logger.getGlobal();
         Logger logger = Logger.getLogger("main");
         logger.info("application started.");
-        Log
         try {
             String s = "abc";
             int n = Integer.parseInt(s);
