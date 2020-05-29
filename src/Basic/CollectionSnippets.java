@@ -37,6 +37,8 @@ public class CollectionSnippets {
         PropertiesSnippets();
 
         SetSnippets();
+
+        QueueSnippets();
     }
 
     private static void ListSnippets() {
@@ -261,6 +263,57 @@ public class CollectionSnippets {
         list.addAll(set);
         return list;
     }
+
+    private static void QueueSnippets() {
+        System.out.println("*****Queue start*****");
+        Queue<String> queue = new LinkedList<>();
+        // enqueue
+        System.out.println("enqueue...");
+        var add = queue.add("apple");
+        var add2 = queue.add(null);
+        var offer = queue.offer("apple2");
+        var offer2 = queue.offer(null);
+        System.out.println(add);
+        System.out.println(add2);
+        System.out.println(offer);
+        System.out.println(offer2);
+        // dequeue
+        System.out.println("dequeue...");
+        var remove = queue.remove();
+        var poll = queue.poll();
+        System.out.println(remove);
+        System.out.println(poll);
+
+        // get
+        System.out.println("get...");
+        var element = queue.element();
+        var peek = queue.peek();
+        System.out.println(element);
+        System.out.println(peek);
+        System.out.println(peek);
+
+        // 排队叫号
+        System.out.println("排队叫号...");
+        Queue<UserV2> q = new PriorityQueue<UserV2>(new UserV2Comparator());
+        // 添加3个元素到队列:
+        q.offer(new UserV2("Bob", "A1"));
+        q.offer(new UserV2("Alice", "A2"));
+        q.offer(new UserV2("Boss", "V1"));
+
+        System.out.println(q.poll()); // Boss/V1
+        System.out.println(q.poll()); // Bob/A1
+        System.out.println(q.poll()); // Alice/A2
+        System.out.println(q.poll()); // null,因为队列为空
+//        while (q.size() > 0) {
+//            System.out.println(q.poll());
+//        }
+        System.out.println("排队叫号结束...");
+        System.out.println("*****Queue end*****");
+    }
+
+    private static void StackSnippets() {
+        
+    }
 }
 
 class Person2 {
@@ -353,4 +406,39 @@ class Message {
         this.sequence = sequence;
         this.text = text;
     }
+}
+
+class UserV2 {
+    public final String name;
+    public final String number;
+
+    public UserV2(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public String toString() {
+        return name + "/" + number;
+    }
+}
+
+
+class UserV2Comparator implements Comparator<UserV2> {
+    // compareTo:x.compareTo(y)
+    // if x>y return 1
+    // if x=y return 0
+    // if x<y return -1
+    public int compare(UserV2 u1, UserV2 u2) {
+        if (u1.number.charAt(0) == u2.number.charAt(0)) {
+            // 如果两个人的号都是A开头或者V开头，比较号的大小
+            return u1.number.compareTo(u2.number);
+        }
+        if (u1.number.charAt(0) == 'V') {
+            // u1的号码是V开头，最高优先级
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
 }
