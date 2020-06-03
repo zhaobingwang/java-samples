@@ -49,10 +49,18 @@ public class Tmp {
     private static List<User> getUserFakeData(int count) {
         List<User> users = new ArrayList<User>();
         for (int i = 0; i < count; i++) {
-            User user = new User();
-            user.setId(i);
-            user.setName("测试" + i);
-            user.setCategory("C" + i % 3);
+//            User user = new User();
+//            user.setId(i);
+//            user.setName("测试" + i);
+//            user.setCategory("C" + i % 3);
+//            users.add(user);
+
+            // use lombok builder
+            User user = User.builder()
+                    .id(i)
+                    .name("测试" + i)
+                    .category("C" + i % 3)
+                    .build();
             users.add(user);
         }
         return users;
