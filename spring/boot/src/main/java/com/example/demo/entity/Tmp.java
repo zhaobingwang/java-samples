@@ -1,7 +1,4 @@
-package com.example.demo.entities;
-
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
+package com.example.demo.entity;
 
 import javax.persistence.*;
 
