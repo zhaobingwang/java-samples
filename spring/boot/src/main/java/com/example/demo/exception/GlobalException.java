@@ -1,22 +1,22 @@
 package com.example.demo.exception;
 
 public class GlobalException extends Exception {
-    private int code;
+    private String code;
 
     public GlobalException(String message) {
         super(message);
     }
 
-    public GlobalException(int code, String message) {
+    public GlobalException(String code, String message) {
         super(message);
         this.code = code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public int getCode() {
+    public String getCode() {
         return this.code;
     }
 }
