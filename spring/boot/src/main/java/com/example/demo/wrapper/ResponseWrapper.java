@@ -1,19 +1,19 @@
 package com.example.demo.wrapper;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.example.demo.constants.ApiCode;
 
 import java.io.Serializable;
 
 public class ResponseWrapper<T> implements Serializable {
-    // 1: 成功，0: 失败
-    private int code = 1;
-    private String message;
 
-    // 请求失败时才有的错误编码
-    private String errorCode;
+    @JSONField(name = "errcode", ordinal = 1)
+    private String errorCode = ApiCode.OK;
 
-    // 请求响应内容
-    @JSONField(name = "content")
+    @JSONField(name = "errmsg", ordinal = 2)
+    private String errorMessage;
+
+    @JSONField(name = "content", ordinal = 3)
     private T content;
 
     public ResponseWrapper() {
@@ -22,16 +22,20 @@ public class ResponseWrapper<T> implements Serializable {
 
     public ResponseWrapper(T content) {
         super();
-        this.code = 1;
-        this.message = "success";
+        this.errorMessage = ApiCode.OK_MESSAGE;
         this.content = content;
     }
 
-    public ResponseWrapper(int code, String message, String errorCode, T content) {
+    public ResponseWrapper(String errorCode, String errorMessage) {
         super();
-        this.code = code;
-        this.message = message;
         this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+    }
+
+    public ResponseWrapper(String errorCode, String errorMessage, T content) {
+        super();
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
         this.content = content;
     }
 
@@ -43,27 +47,19 @@ public class ResponseWrapper<T> implements Serializable {
         this.content = content;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public String getErrorCode() {
         return errorCode;
     }
 
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

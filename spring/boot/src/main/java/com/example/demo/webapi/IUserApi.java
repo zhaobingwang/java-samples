@@ -7,6 +7,6 @@ import com.example.demo.wrapper.ResponseWrapper;
 
 import java.util.List;
 
-public interface IUser {
+public interface IUserApi {
     ResponseWrapper<List<UserDto>> userInfo(RequestWrapper<UserParam> args) throws Exception;
 }

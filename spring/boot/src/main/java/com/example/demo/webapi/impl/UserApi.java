@@ -1,10 +1,10 @@
 package com.example.demo.webapi.impl;
 
-import com.example.demo.exception.BusinessException;
+import com.example.demo.constants.ApiCode;
 import com.example.demo.model.UserDto;
 import com.example.demo.model.args.UserParam;
 import com.example.demo.service.impl.UserService;
-import com.example.demo.webapi.IUser;
+import com.example.demo.webapi.IUserApi;
 import com.example.demo.wrapper.RequestWrapper;
 import com.example.demo.wrapper.ResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class User implements IUser {
+public class UserApi implements IUserApi {
 
     @Autowired
     private UserService userService;
@@ -33,6 +33,7 @@ public class User implements IUser {
         if (dto.isPresent()) {
             return new ResponseWrapper<>(dto.get());
         }
-        return new ResponseWrapper<UserDto>(0, "无数据", "404", null);
+        return new ResponseWrapper<>(
+                ApiCode.USER_NOT_FOUND, ApiCode.USER_NOT_FOUND_MESSAGE, null);
     }
 }

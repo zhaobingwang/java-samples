@@ -1,5 +1,6 @@
 package com.example.demo.exception;
 
+import com.example.demo.constants.ApiCode;
 import com.example.demo.wrapper.ResponseWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +29,10 @@ public class RestExceptionHandler {
         logger.error(e.getMessage(), e);
         if (e instanceof BusinessException) {
             BusinessException be = (BusinessException) e;
-            return new ResponseWrapper(0, be.getMessage(), be.getCode(), null);
+            return new ResponseWrapper(be.getCode(), be.getMessage());
         } else {
-            return new ResponseWrapper(0, "服务器发生了未知的错误", "0", null);
+            return new ResponseWrapper(ApiCode.SYS_INTERNAL_SERVER_ERROR,
+                    ApiCode.SYS_INTERNAL_SERVER_ERROR_MESSAGE);
         }
     }
 }
