@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("userServices")
 public class UserService implements IUserService {
@@ -27,5 +28,18 @@ public class UserService implements IUserService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    @Override
+    public Optional<UserDto> findById(long id) {
+        Optional<User> entity = userRepository.findById(id);
+        UserDto dto = null;
+        if (entity.isPresent()) {
+            dto = new UserDto();
+            User notNullUser = entity.get();
+            dto.setName(notNullUser.getName());
+            dto.setEmail(notNullUser.getEmail());
+        }
+        return Optional.ofNullable(dto);
     }
 }

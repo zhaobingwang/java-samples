@@ -9,4 +9,6 @@ import java.io.Serializable;
 public class UserParam implements Serializable {
     @NotBlank(message = "姓名不能为空")
     private String name;
+
+    private Long id;
 }

@@ -8,12 +8,10 @@ import com.example.demo.webapi.IUser;
 import com.example.demo.wrapper.RequestWrapper;
 import com.example.demo.wrapper.ResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class User implements IUser {
@@ -27,5 +25,14 @@ public class User implements IUser {
         List<UserDto> dtos = userService.findUsers(args.getArgs());
 //        throw new Exception("aaaa");
         return new ResponseWrapper<>(dtos);
+    }
+
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public ResponseWrapper<UserDto> getUserInfoById(@PathVariable long id) {
+        Optional<UserDto> dto = userService.findById(id);
+        if (dto.isPresent()) {
+            return new ResponseWrapper<>(dto.get());
+        }
+        return new ResponseWrapper<UserDto>(0, "无数据", "404", null);
     }
 }

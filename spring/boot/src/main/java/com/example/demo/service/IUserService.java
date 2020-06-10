@@ -4,6 +4,7 @@ import com.example.demo.model.UserDto;
 import com.example.demo.model.args.UserParam;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserService {
     /**
@@ -13,4 +14,12 @@ public interface IUserService {
      * @return
      */
     List<UserDto> findUsers(UserParam param);
+
+    /**
+     * 查找符合条件的一个用户
+     *
+     * @param id 主键ID
+     * @return
+     */
+    Optional<UserDto> findById(long id);
 }
