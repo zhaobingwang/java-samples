@@ -7,18 +7,22 @@ import com.example.demo.service.impl.UserService;
 import com.example.demo.webapi.IUserApi;
 import com.example.demo.wrapper.RequestWrapper;
 import com.example.demo.wrapper.ResponseWrapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@Api(tags = "用户管理")
 @RestController
 public class UserApi implements IUserApi {
 
     @Autowired
     private UserService userService;
 
+    @ApiOperation(value = "获取用户列表")
     @Override
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseWrapper<List<UserDto>> userInfo(@RequestBody RequestWrapper<UserParam> args) throws Exception {

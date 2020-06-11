@@ -8,8 +8,8 @@ spring:
 
   datasource:
     druid:
-      url: jdbc:postgresql://localhost:5432/root?stringtype=unspecified
-      username: root
+      url: jdbc:postgresql://localhost:5432/postgres?stringtype=unspecified
+      username: postgres
       password: 123456
       driver-class-name: org.postgresql.Driver
   jpa:
@@ -46,3 +46,16 @@ logging:
   #      file: "%d{yyyy-MM-dd HH:mm} [%-5level] [%thread] %logger- %msg%n"
   level:
     root: info
+
+# swagger config
+# 更多信息见: https://github.com/SpringForAll/spring-boot-starter-swagger
+swagger:
+  enabled: true
+  title: Demo
+  description: Spring Boot Demo
+  version: 1.0
+  base-package: com.example.demo.webapi
+  license: MIT License
+  license-url: https://github.com/zhaobingwang/java-samples/blob/master/LICENSE
+  ui-config:
+    submit-methods: get
