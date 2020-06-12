@@ -4,6 +4,7 @@ import com.example.demo.model.UserDto;
 import com.example.demo.model.args.UserParam;
 import com.example.demo.wrapper.RequestWrapper;
 import com.example.demo.wrapper.ResponseWrapper;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 

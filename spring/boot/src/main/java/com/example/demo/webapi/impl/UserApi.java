@@ -10,8 +10,11 @@ import com.example.demo.wrapper.ResponseWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +28,8 @@ public class UserApi implements IUserApi {
     @ApiOperation(value = "获取用户列表")
     @Override
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseWrapper<List<UserDto>> userInfo(@RequestBody RequestWrapper<UserParam> args) throws Exception {
+    public ResponseWrapper<List<UserDto>> userInfo(@RequestBody RequestWrapper<@Valid UserParam> args)
+            throws Exception {
         List<UserDto> dtos = userService.findUsers(args.getArgs());
 //        throw new Exception("aaaa");
         return new ResponseWrapper<>(dtos);
