@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -65,6 +66,19 @@ public class UserRepositoryTests {
                 .build()
         );
         Assert.assertEquals(1, userRepository.findByName("测试Z").size());
+    }
+
+    @Test
+    public void find() {
+        long id = 11;
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            Assert.assertEquals(user.getName(), "测试A");
+            System.out.println(user.getName());
+        } else {
+            Assert.fail("The user record [id=" + id + "] could not be found.");
+        }
     }
 
     @Test
