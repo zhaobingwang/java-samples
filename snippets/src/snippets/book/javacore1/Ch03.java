@@ -14,6 +14,9 @@ import java.util.Date;
 public class Ch03 {
     public static void main(String[] args) throws ParseException {
         codePointAndUnit();
+        double d = 114.144;
+        d = (double) Math.round(d * 10) / 10;
+        System.out.println(d);
     }
 
     /**
