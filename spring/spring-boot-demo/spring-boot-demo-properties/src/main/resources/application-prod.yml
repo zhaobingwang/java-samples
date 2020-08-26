@@ -1,0 +1,6 @@
+application:
+  name: prod环境 @artifactId@
+  version: prod环境 @version@
+developer:
+  name: prod环境 zhangsan
+  email: zhangsan@email.com
