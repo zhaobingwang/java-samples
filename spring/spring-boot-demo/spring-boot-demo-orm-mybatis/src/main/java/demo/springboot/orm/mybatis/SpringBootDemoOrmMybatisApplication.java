@@ -23,7 +23,7 @@ public class SpringBootDemoOrmMybatisApplication {
 
     @GetMapping("/hello")
     public String sayHello(@RequestParam(required = false, name = "who") String who) {
-        return userMapper.selectUserById(1L).getName();
+        return userMapper.getAllWithCondition(who).get(0).getName();
 //        return String.format("Hello,%s!", who);
     }
 }

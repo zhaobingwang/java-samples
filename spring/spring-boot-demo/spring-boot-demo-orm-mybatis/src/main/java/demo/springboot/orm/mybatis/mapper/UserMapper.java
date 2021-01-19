@@ -12,6 +12,8 @@ import java.util.List;
 @Component
 public interface UserMapper {
 
+    List<User> getAllWithCondition(@Param("uname") String uname);
+
     /**
      * 查询所有用户
      *
